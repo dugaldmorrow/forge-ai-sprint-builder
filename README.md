@@ -25,6 +25,7 @@ Whilst the back end is waiting for the AI API to return a result, the app's fron
 
 ## Limitations and improvements
 
+* The app doesn't actually create or modify sprints since it doesn't contribute to the goal of the app which is is to explain how to manage long running AI tasks.
 * For simplicity, the app mainly implements "happy paths". A commercial quality app should ensure error conditions are properly handled.
 * One particular known error condition involves the AI API returning a response that is not JSON formatted. This seems to occur from time to time and could be reduced by improving the prompt.
 * The code is a mix of Typescript and Javascript. Converting some of the Javascript to Typescript would improve maintainability.
