@@ -1,0 +1,22 @@
+{
+  "name": "forge-ai-sprint-builder",
+  "version": "1.0.27",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "@types/node": "^20.4.9",
+    "@types/react": "^18.2.19",
+    "@typescript-eslint/parser": "^6.3.0",
+    "eslint": "^8.50.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "jsdom": "^22.1.0",
+    "react-scripts": "^5.0.1",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "@forge/events": "^0.8.18",
+    "@forge/resolver": "^1.5.17",
+    "@forge/storage": "^1.5.9"
+  }
+}

@@ -1,0 +1,37 @@
+modules:
+  jira:projectPage:
+    - key: forge-build-sprints-from-backlog-project-page
+      resource: main
+      resolver:
+        function: resolver
+      title: AI Sprint Builder
+  consumer:
+    - key: ai-job-consumer
+      queue: aiJobQueue
+      resolver:
+        function: queue-fn
+        method: job-event-listener
+  function:
+    - key: queue-fn
+      handler: asyncEvents.aiJobHandler
+    - key: resolver
+      handler: uiResolver.handler
+resources:
+  - key: main
+    path: static/frontend/build
+permissions:
+  scopes:
+    - read:jira-work
+    - storage:app
+  content:
+    scripts:
+      - unsafe-inline
+      - unsafe-hashes
+    styles:
+      - unsafe-inline
+  external:
+    fetch:
+      backend:
+        - https://api.openai.com
+app:
+  id: ari:cloud:ecosystem::app/f6164e09-2b3c-4745-8f67-4b8b92141476
