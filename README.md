@@ -23,6 +23,10 @@ The asynchronous function invocation is where the AI call occurs. The result of 
 
 Whilst the back end is waiting for the AI API to return a result, the app's front end periodically polls it's backend until the result is available. This is done by sending a `pollJobResult` [invoke](https://developer.atlassian.com/platform/forge/custom-ui-bridge/invoke/#invoke) request. The implementation of this request simply involves attempting to retrieve the result from [Forge Storage](https://developer.atlassian.com/platform/forge/runtime-reference/storage-api/#storage-api). The UI passes the job ID so the back end knows the key of the storage record to check. 
 
+This pattern is illustrated by the following sequence diagram:
+
+![Forge async job pattern sequence diagram](/forge-async-job-pattern.png "Forge async job pattern sequence diagram")
+
 ## Limitations and improvements
 
 * The app doesn't actually create or modify sprints since it doesn't contribute to the goal of the app which is is to explain how to manage long running AI tasks.
