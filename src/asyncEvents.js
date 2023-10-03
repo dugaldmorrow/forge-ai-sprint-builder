@@ -125,8 +125,8 @@ const MOCK_fetchSortedIssues = async (issueData) => {
   })
 }
 
-const testResolver = new Resolver();
-testResolver.define("job-event-listener", async (queueItem) => {
+const asyncResolver = new Resolver();
+asyncResolver.define("job-event-listener", async (queueItem) => {
   const job = queueItem.payload;
   const eventContext = queueItem.context;
   console.log(` * job: ${JSON.stringify(job)}`);
@@ -137,4 +137,4 @@ testResolver.define("job-event-listener", async (queueItem) => {
   await storage.set(jobId, result);
 
 });
-export const aiJobHandler = testResolver.getDefinitions();
+export const aiJobHandler = asyncResolver.getDefinitions();
