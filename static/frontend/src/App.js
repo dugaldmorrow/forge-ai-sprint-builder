@@ -59,7 +59,8 @@ function App() {
     }
 
     const renderStorypoints = (storypoints) => {
-        return <span style={{color: '#777', fontSize: '12px'}}> [{storypoints} storypoints]</span>
+        const maybeTrailingS = storypoints === 1 ? '' : 's';
+        return <span style={{color: '#777', fontSize: '12px'}}> [{storypoints} story point{maybeTrailingS}]</span>
     }
 
     const renderSprintIssue = (issue) => {
@@ -116,35 +117,6 @@ function App() {
         } else {
             return null;
         }
-        if (result && result.sortedIssueData) {
-            const renderedSprints = [];
-            let thisSprint = {
-                number: 1,
-                issues: [],
-                storypointsTotal: 0
-            }
-            for (const issue of result.sortedIssueData) {
-                const addIssueToThisSprint = thisSprint.issues.length === 0 || issue.storypoints + thisSprint.storypointsTotal < maxStorypointsPerSprint;
-                if (!addIssueToThisSprint) {
-                    const renderedSprint = renderSprint(thisSprint);
-                    renderedSprints.push(renderedSprint);
-                    thisSprint = {
-                        number: thisSprint.number + 1,
-                        issues: [],
-                        storypointsTotal: 0
-                    }
-                }
-                thisSprint.issues.push(issue);
-                thisSprint.storypointsTotal += issue.storypoints;
-            }
-            return (
-                <div style={{marginTop: '20px'}}>
-                    {renderedSprints}
-                </div>
-            );
-        } else {
-            return null;
-        }
     }
 
     const renderResult = () => {
@@ -162,7 +134,7 @@ function App() {
     const renderMaxStorypointsPerSprintTextField = () => {
         return (
           <>
-            <Label htmlFor="max-sprint-storypoints">Maximum storypoints per sprint</Label>
+            <Label htmlFor="max-sprint-storypoints">Maximum story points per sprint</Label>
             <Textfield
               id="max-sprint-storypoints"
               value={maxStorypointsPerSprint}
