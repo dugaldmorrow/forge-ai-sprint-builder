@@ -55,7 +55,9 @@ const fetchSortedIssues = async (issueData) => {
   if (aiResult.status === 200) {
     console.log(` * aiResult.message: ${aiResult.message}`);
     try {
-      const sortedIssues = JSON.parse(aiResult.message);
+      // HACK: Sometimes ChatGPT returns a prefix to the JSON so we have to strip it. This could be improved to handle different prefix text.
+      const sanitisedMessage = aiResult.message.replace(`Sure! Here's the JSON formatted string representing the sorted array of issue objects:`, '').trim();
+      const sortedIssues = JSON.parse(sanitisedMessage);
       result.sortedIssueData = buildSortedIssueData(issueData, sortedIssues);
     } catch (error) {
       aiResult.status = 500;
